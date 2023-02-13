@@ -8,6 +8,7 @@ import Profile from './Profile';
 import Reservation from './Reservation';
 import Gallery from './Gallery';
 import UserRequest from './UserRequest';
+import ScrollRestoration from "./ScrollRestoration";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -32,10 +33,11 @@ function App() {
 
   return (
     <div className="App">
+      <ScrollRestoration />
       {isPopUpForms ? <PopUpForms setIsPopUpForms={setIsPopUpForms} currentUser={currentUser} setCurrentUser={setCurrentUser}/> : null}
       <Header setIsPopUpForm={setIsPopUpForms} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Home currentUser={currentUser} setIsPopUpForms={setIsPopUpForms}/>} />
         {currentUser ?  <Route exact path="/profile" element={<Profile currentUser={currentUser} setCurrentUser={setCurrentUser}/>} /> : null}
         {currentUser ? <Route exact path="/reservation" element={<Reservation currentUser={currentUser} setCurrentUser={setCurrentUser}/>} /> : null}
         <Route exact path="/gallery" element={<Gallery />} />

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
 const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
 
-export default function HomeReservation() {
+export default function HomeReservation({currentUser, setIsPopUpForms}) {
     const [isInView, setIsInView] = useState(false);
 
     return (
@@ -44,14 +44,27 @@ export default function HomeReservation() {
                         </p>
                         
                         <div className="action-link-container">
-                            <NavLink to="/reservation" exact="true">
+                            {currentUser ? 
+                                <NavLink to="/reservation" exact="true">
+                                    <div className="action-link">
+                                        <h5>REQUEST</h5>
+                                        <span className="material-symbols-outlined" style={{color: ""}}>
+                                            trending_flat
+                                        </span>
+                                    </div>
+                                </NavLink>
+                            :
+                            <a  onClick={() => setIsPopUpForms(true)}>
                                 <div className="action-link">
                                     <h5>REQUEST</h5>
                                     <span className="material-symbols-outlined" style={{color: ""}}>
                                         trending_flat
                                     </span>
                                 </div>
-                            </NavLink>
+                            </a>
+                            }
+
+                            
                         </div>
                     </div>
                 </div>

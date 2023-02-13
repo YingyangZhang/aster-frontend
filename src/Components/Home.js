@@ -6,13 +6,13 @@ import HomeReservation from "./HomeReservation";
 import HomeGallery from "./HomeGallery";
 import Footer from "./Footer";
 
-export default function Home() {
+export default function Home({currentUser, setIsPopUpForms}) {
     return (
         <>
             <LandingPage />
             <WhyMars />
             <ToMars />
-            <HomeReservation />
+            <HomeReservation currentUser={currentUser} setIsPopUpForms={setIsPopUpForms}/>
             <HomeGallery />
             <Footer />
         </>
